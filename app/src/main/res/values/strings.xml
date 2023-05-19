@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CT Push all cases</string>
+    <string name="hint">Enter your email</string>
+    <string name="push_type">Push Types</string>
+    <string name="push_event_info">Please select the type of push you want to receive.\nA corresponding event will be raised on the CT dashboard which will trigger the particular campaign</string>
+
+
+    <string-array name="Push_Types">
+        <item>Simple Push</item>
+        <item>Push with end timer</item>
+        <item>Push with group ID</item>
+        <item>Basic push template</item>
+        <item>Timer template</item>
+        <item>Carousal template</item>
+    </string-array>
+</resources>
