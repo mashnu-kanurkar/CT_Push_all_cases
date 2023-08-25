@@ -1,18 +1,28 @@
 package com.example.ctpushallcases
 
+import android.Manifest
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.clevertap.android.sdk.CleverTapAPI
 import com.clevertap.android.sdk.pushnotification.fcm.CTFcmMessageHandler
+import com.clevertap.android.sdk.variables.Parser
+//import com.clevertap.android.sdk.pushnotification.fcm.CTFcmMessageHandler
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import java.lang.Exception
 
 class MyFCMService: FirebaseMessagingService() {
+
+    private val TAG = "CleverTap"
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+    }
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
@@ -23,23 +33,36 @@ class MyFCMService: FirebaseMessagingService() {
                     for ((key, value) in this) {
                         extras.putString(key, value)
                     }
-                    Log.d("MyFCMService", "payload ${extras.toString()}")
+                    Log.d(TAG, "payload ${extras.toString()}")
                     val info = CleverTapAPI.getNotificationInfo(extras)
+
                     if (info.fromCleverTap) {
                         if (extras.containsKey("my_rendering")){
                             renderNotification(extras)
                         }else{
-                            Log.d("MyFCMService", "Can not custom render this notif. CT will render this notif")
+                            Log.d(TAG, "Can not custom render this notif. CT will render this notif")
                             CTFcmMessageHandler().createNotification(applicationContext, message)
+                            //val newPayload  = changePayload(extras)
+                            //CleverTapAPI.createNotification(applicationContext, newPayload)
                         }
                     } else {
                         // not from CleverTap handle yourself or pass to another provider
                     }
                 }
             } catch (t: Throwable) {
-                Log.d("MYFCMLIST", "Error parsing FCM message", t)
+                Log.d(TAG, "Error parsing FCM message", t)
             }
         }
+    }
+
+    private fun changePayload(extras: Bundle): Bundle {
+        if (extras.containsKey("wzrk_pivot")){
+            val oldVar = extras.getString("wzrk_pivot")
+            val newVar = if (oldVar == "Variant A") "VariantA" else "VariantB"
+            extras.putString("wzrk_pivot", newVar)
+            Log.d(TAG, "Variant changed from $oldVar to $newVar")
+        }
+        return extras
     }
 
     private fun renderNotification(extras: Bundle) {
@@ -73,6 +96,21 @@ class MyFCMService: FirebaseMessagingService() {
         }
         with(NotificationManagerCompat.from(this)) {
             // notificationId is a unique int for each notification that you must define
+            if (ActivityCompat.checkSelfPermission(
+                    applicationContext,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                Log.d(TAG, "No permission to post notification")
+                return
+            }
             notify(notifId, builder.build())
         }
         CleverTapAPI.getDefaultInstance(applicationContext)?.pushNotificationViewedEvent(extras)

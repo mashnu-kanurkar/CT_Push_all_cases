@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CT Push all cases</string>
     <string name="hint">Enter your email</string>
+    <string name="enter_event">Enter custom event name</string>
     <string name="push_type">Push Types</string>
     <string name="push_event_info">Please select the type of push you want to receive.\nA corresponding event will be raised on the CT dashboard which will trigger the particular campaign</string>
 
@@ -12,5 +13,16 @@
         <item>Basic push template</item>
         <item>Timer template</item>
         <item>Carousal template</item>
+        <item>Client campaign test</item>
     </string-array>
+    <string name="title_activity_app_inbox">AppInbox</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
