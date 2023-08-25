@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "1057167212578",
+    "project_id": "test9011-74135",
+    "storage_bucket": "test9011-74135.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057167212578:android:7ae606f3baa68ba0800a7b",
+        "android_client_info": {
+          "package_name": "com.example.ct_test9011"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057167212578-335qr0gpeq4odnq37bhmr47nl2fonho9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH9GjiQKcXzbkXP26-aiifzfyCfgw2-rE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057167212578-335qr0gpeq4odnq37bhmr47nl2fonho9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057167212578:android:e10a656e1a7dd3cc800a7b",
+        "android_client_info": {
+          "package_name": "com.example.ctpushallcases"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057167212578-sldabqnof7i5dfeo4uv84ef2sin6cdf9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ctpushallcases",
+            "certificate_hash": "8cfb1d2de9de2e20f03bc8823eaa3851968dd2c1"
+          }
+        },
+        {
+          "client_id": "1057167212578-335qr0gpeq4odnq37bhmr47nl2fonho9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH9GjiQKcXzbkXP26-aiifzfyCfgw2-rE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057167212578-335qr0gpeq4odnq37bhmr47nl2fonho9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
