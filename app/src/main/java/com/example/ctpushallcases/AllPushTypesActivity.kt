@@ -3,7 +3,9 @@ package com.example.ctpushallcases
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -18,10 +20,24 @@ class AllPushTypesActivity : AppCompatActivity(), DisplayUnitListener {
     private lateinit var pushTypes: Array<String>
     private lateinit var selectedType: String
     private lateinit var logOutButton: Button
-    private lateinit var image1: ImageView
-    private lateinit var image2: ImageView
-    private lateinit var image3: ImageView
     private lateinit var cleverTapDefaultInstance: CleverTapAPI
+    private val TAG = "AllPushTypesActivity"
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            NotificationUtils.dismissNotification(intent, applicationContext)
+        }
+        val extras = intent?.extras
+        CleverTapAPI.processPushNotification(applicationContext,extras);
+        if (extras != null) {
+            for(key in extras.keySet()){
+                Log.d(TAG, "$key: ${extras[key]}")
+            }
+        }
+        Log.d(TAG, "onNewIntent extras: ${extras.toString()}")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +45,8 @@ class AllPushTypesActivity : AppCompatActivity(), DisplayUnitListener {
         spinner = findViewById(R.id.spinner)
         pushEventButton = findViewById(R.id.push_event_button)
         logOutButton = findViewById(R.id.log_out_button)
-        image1 = findViewById(R.id.imageView2)
-        image2 = findViewById(R.id.imageView3)
-        image3 = findViewById(R.id.imageView4)
 
-        val cleverTapDefaultInstance = CleverTapAPI.getDefaultInstance(applicationContext)
+        cleverTapDefaultInstance = CleverTapAPI.getDefaultInstance(applicationContext)!!
 
         pushTypes = resources.getStringArray(R.array.Push_Types)
         selectedType = pushTypes[0]

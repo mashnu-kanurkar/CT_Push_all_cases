@@ -1,9 +1,31 @@
 
 ?
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
-A
-gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
 7
 gradlew,5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
+h
+8app/src/main/java/com/example/ctpushallcases/AppInbox.kt,1/4/14c4ac239b5ad64d8777df19a8e74920cc92311f
+w
+G.idea/sonarlint/issuestore/5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9,f/7/f7819ea138c33fec28e7e536cb2de34db38fc121
+w
+G.idea/sonarlint/issuestore/2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3,9/a/9aed88f31eac276604c6355c1adcc0bce1f80fd6
+
+Q.idea/sonarlint/securityhotspotstore/0/5/05efc8b1657769a27696d478ded1e95f38737233,2/5/2534b7ffebad46793fc4d77da07aca83b23dd835
+w
+G.idea/sonarlint/issuestore/0/5/05efc8b1657769a27696d478ded1e95f38737233,3/c/3c8c56407c35e5f5ebbd6c7250a79af8128a13a6
+
+Q.idea/sonarlint/securityhotspotstore/5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9,1/e/1e45613b6060de813dc92caeb118e08a2124bc35
+
+Q.idea/sonarlint/securityhotspotstore/2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3,1/0/1017d171139053a6ceaff055b7159ba14e80dc44
+>
+app/.gitignore,5/1/51e1c5d383dfaa35e0e7e5873a0a99355a86880f
+H
+app/google-services.json,f/d/fd8d34b142d02ec743a8efefefd2c097961666e9
+F
+app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
+A
+gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
+X
+(gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e

@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CTPushAllCases">
+
         <activity
             android:name=".AppInbox"
             android:exported="false"
@@ -20,10 +21,14 @@
             android:theme="@style/Theme.CTPushAllCases" />
         <activity
             android:name=".AllPushTypesActivity"
-            android:exported="false" >
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
-                <data android:scheme="https" android:host="www.example.com" />
-                <data android:scheme="app" android:host="allpush" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="app"/>
+                <data android:host="open.allpush"/>
             </intent-filter>
         </activity>
         <activity
@@ -53,6 +58,14 @@
         <meta-data
             android:name="CLEVERTAP_USE_GOOGLE_AD_ID"
             android:value="0" />
+
+        <service
+            android:name="com.clevertap.android.sdk.pushnotification.CTNotificationIntentService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.clevertap.PUSH_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
