@@ -42,6 +42,7 @@ class AllPushTypesActivity : AppCompatActivity(), DisplayUnitListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_push_types)
+        Log.d(TAG, "AllPushTypesActivity: onCreate")
         spinner = findViewById(R.id.spinner)
         pushEventButton = findViewById(R.id.push_event_button)
         logOutButton = findViewById(R.id.log_out_button)
@@ -50,19 +51,19 @@ class AllPushTypesActivity : AppCompatActivity(), DisplayUnitListener {
 
         pushTypes = resources.getStringArray(R.array.Push_Types)
         selectedType = pushTypes[0]
-        if (spinner !=null){
-            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pushTypes)
-            spinner.adapter = adapter
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pushTypes)
+        spinner.adapter = adapter
 
-            spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    selectedType = pushTypes[position]
-                    Toast.makeText(this@AllPushTypesActivity, "Selected push type: ${pushTypes[position]}", Toast.LENGTH_SHORT).show()
-                }
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedType = pushTypes[position]
+                Log.d(TAG, "on Item selected invoked")
+                Toast.makeText(this@AllPushTypesActivity, "Selected push type: ${pushTypes[position]}", Toast.LENGTH_SHORT).show()
+            }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    selectedType = pushTypes[0]
-                }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                Log.d(TAG, "nothing selected invoked")
+                selectedType = pushTypes[0]
             }
         }
         cleverTapDefaultInstance?.apply {

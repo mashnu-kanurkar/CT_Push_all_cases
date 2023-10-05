@@ -17,10 +17,7 @@ import java.lang.Exception
 
 class MyFCMService: FirebaseMessagingService() {
 
-    private val TAG = "CleverTap"
-    override fun onNewToken(token: String) {
-        super.onNewToken(token)
-    }
+    private val TAG = "MyFCMService"
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
@@ -35,13 +32,12 @@ class MyFCMService: FirebaseMessagingService() {
                     val info = CleverTapAPI.getNotificationInfo(extras)
 
                     if (info.fromCleverTap) {
-                        if (extras.containsKey("my_rendering")){
-                            renderNotification(extras)
-                        }else{
-                            Log.d(TAG, "Can not custom render this notif. CT will render this notif")
-                            CTFcmMessageHandler().createNotification(applicationContext, message)
-                            //val newPayload  = changePayload(extras)
-                            //CleverTapAPI.createNotification(applicationContext, newPayload)
+                        if (extras.containsKey("type")){
+                            if (extras.getString("type") == "push_template"){
+                                CTFcmMessageHandler().createNotification(applicationContext, message)
+                            }else{
+                                renderNotification(extras)
+                            }
                         }
                     } else {
                         // not from CleverTap handle yourself or pass to another provider
@@ -51,16 +47,6 @@ class MyFCMService: FirebaseMessagingService() {
                 Log.d(TAG, "Error parsing FCM message", t)
             }
         }
-    }
-
-    private fun changePayload(extras: Bundle): Bundle {
-        if (extras.containsKey("wzrk_pivot")){
-            val oldVar = extras.getString("wzrk_pivot")
-            val newVar = if (oldVar == "Variant A") "VariantA" else "VariantB"
-            extras.putString("wzrk_pivot", newVar)
-            Log.d(TAG, "Variant changed from $oldVar to $newVar")
-        }
-        return extras
     }
 
     private fun renderNotification(extras: Bundle) {
@@ -99,13 +85,10 @@ class MyFCMService: FirebaseMessagingService() {
                     Manifest.permission.POST_NOTIFICATIONS
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
+                /**
+                 * Permission code is not implemented.
+                 * Please enable permissions manually
+                 */
                 Log.d(TAG, "No permission to post notification")
                 return
             }

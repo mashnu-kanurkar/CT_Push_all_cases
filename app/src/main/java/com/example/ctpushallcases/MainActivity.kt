@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity(), CTInboxListener {
     }
 
     private fun goToNext(){
+        finish()
         startActivity(Intent(this@MainActivity, AllPushTypesActivity::class.java))
     }
 
