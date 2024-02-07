@@ -33,10 +33,12 @@ class MyFCMService: FirebaseMessagingService() {
 
                     if (info.fromCleverTap) {
                         if (extras.containsKey("type")){
-                            if (extras.getString("type") == "push_template"){
-                                CTFcmMessageHandler().createNotification(applicationContext, message)
-                            }else{
+                            if (extras.getString("type") == "custom_render"){
+                                //this is custom notification that will be rendered using custom code
                                 renderNotification(extras)
+                            }else{
+                                //CleverTap will render this notification
+                                CTFcmMessageHandler().createNotification(applicationContext, message)
                             }
                         }
                     } else {
