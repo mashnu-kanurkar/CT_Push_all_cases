@@ -40,6 +40,8 @@ class MyFCMService: FirebaseMessagingService() {
                                 //CleverTap will render this notification
                                 CTFcmMessageHandler().createNotification(applicationContext, message)
                             }
+                        }else{
+                            CTFcmMessageHandler().createNotification(applicationContext, message)
                         }
                     } else {
                         // not from CleverTap handle yourself or pass to another provider
